@@ -1,0 +1,16 @@
+{
+  "observation": "G004",
+  "vex-path": "./G004.vex",
+  "output-path": "/var/scratch/mpurvins/",
+  "correlation-channels": [1, 2, 3, 4, 5, 6, 7, 8],
+  "reference-station": "Ib",
+  "number_of_channels_per_subband": 128,
+  "scans": [
+    {
+      "scan": "No0002",
+      "file-path-ir": "/var/scratch/mpurvins/g004_ir_no0002.m5a",
+      "file-path-ib": "/var/scratch/mpurvins/g004_ib_no0002.m5a",
+      "runtime": 180
+    }
+  ]
+}
