@@ -3,6 +3,8 @@ import json
 
 from generate_run_cmd import generate_run_cmds
 
+from visibility_html_plots import VisibiltyHTMLPlots
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-c", "--control", help="Control file")
@@ -24,6 +26,6 @@ if __name__ == "__main__":
         for subband in range(1, 9):
             corr_files.append(f"{corr_file_path}{scan['scan']}_{subband}.out")
 
-    print(corr_files)
-
+    vis = VisibilityHTMLPlots(ctrl)
+    vis.process_visibilities(corr_files)
     # Now process the output
