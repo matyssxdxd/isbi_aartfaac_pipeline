@@ -34,13 +34,14 @@ class Header:
 
 class VisibilityHTMLPlots:
 
-    def __init__(self, control):
+    def __init__(self, control, scan):
         self.control = control 
         self.vex = Vex(self.control['vex-path'])
         self.nr_subbands = len(self.control['correlation-channels'])
         self.nr_receivers = 3
         self.nr_channels = self.control['number_of_channels_per_subband'] - 1
         self.nr_polarizations = 4
+        self.scan = scan
         self.visibilities = []
         self.freq_block = None
 
@@ -238,7 +239,7 @@ class VisibilityHTMLPlots:
 
         plt.rcParams.update({'font.size': 16, 'lines.linewidth': 2, 'axes.grid': True})
 
-        html = open("./index.html", "w")
+        html = open(f"{self.control['output-path']}{self.scan}/index.html", "w")
         html.write("<!DOCTYPE html>")
         html.write("<html lang=\"en\"")
         html.write("<head>")
@@ -307,7 +308,7 @@ class VisibilityHTMLPlots:
             # Plot auto correlation
             if current_polarization in [0, 3]:
                 for baseline in [0, 2]:
-                    image_directory = "./out/plots/auto_correlations/"
+                    image_directory = f"{self.control['output-path']}{self.scan}/out/plots/auto_correlations/"
                     file = f"{filename}{baselines[baseline]}_{current_polarization}.png"
                     y = np.abs(self.visibilities[subband][baseline][current_polarization])
                     y_normalized = y / np.median(np.abs(y)) * 100
@@ -346,27 +347,27 @@ class VisibilityHTMLPlots:
             # Amplitude Plot
             self.save_plot(x, amplitude, f"Amplitude {baselines[1]}",
                       "Frequency (MHz)", "Amplitude", f"{filename}{baselines[1]}_amplitude_{current_polarization}.png",
-                      "./out/plots/cross_correlations/amplitude/")
+                      f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/amplitude/")
 
             # Phase Plot
             self.save_plot(x, phase, f"Phase {baselines[1]}",
                       "Frequency (MHz)", "Phase", f"{filename}{baselines[1]}_phase_{current_polarization}.png",
-                      "./out/plots/cross_correlations/phase/")
+                      f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/phase/")
 
             # Lag Plot
             lag_x = np.arange(-(self.nr_channels - 1), self.nr_channels - 1)
             self.save_plot(lag_x, lag_y, f"Lag {baselines[1]}",
                       "Lag", "Amplitude", f"{filename}{baselines[1]}_lag_{current_polarization}.png",
-                      "./out/plots/cross_correlations/lag/")
+                      f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/lag/")
 
-            image_directory = "./out/plots/cross_correlations/lag/"
+            image_directory = f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/lag/"
             html.write("<th class=\"image-link\">")
             html.write(f"<a href=\"{image_directory}{filename}{baselines[1]}_lag_{current_polarization}.png\">lag </a>")
             html.write(
                 f"<img src=\"{image_directory}{filename}{baselines[1]}_lag_{current_polarization}.png\" alt=\"Image\">")
             html.write("</th>")
 
-            image_directory = "./out/plots/cross_correlations/amplitude/"
+            image_directory = f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/amplitude/"
             html.write("<th class=\"image-link\">")
             html.write(
                 f"<a href=\"{image_directory}{filename}{baselines[1]}_amplitude_{current_polarization}.png\">amplitude </a>")
@@ -374,7 +375,7 @@ class VisibilityHTMLPlots:
                 f"<img src=\"{image_directory}{filename}{baselines[1]}_amplitude_{current_polarization}.png\" alt=\"Image\">")
             html.write("</th>")
 
-            image_directory = "./out/plots/cross_correlations/phase/"
+            image_directory = f"{self.control['output-path']}{self.scan}/out/plots/cross_correlations/phase/"
             html.write("<th class=\"image-link\">")
             html.write(
                 f"<a href=\"{image_directory}{filename}{baselines[1]}_phase_{current_polarization}.png\">phase </a>")
