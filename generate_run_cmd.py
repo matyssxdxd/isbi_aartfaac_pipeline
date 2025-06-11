@@ -50,9 +50,10 @@ def generate_run_cmd(scan, vex, channel_mapping, number_of_channels_per_subband,
     if not os.path.exists(output):
         os.makedirs(output)
 
+    yes = ""
     for subband in range(1, subbands + 1):
-        output += f"{scan['scan']}_{subband}.out"
+        yes += f"{output}{scan['scan']}_{subband}.out"
         if subband <= subbands - 1:
-            output += ","
+            yes += ","
 
-    return f"TZ=UTC ISBI/ISBI -M {channel_mapping} -K {output_path}{scan['scan']}/delays.bin -p1 -n2 -t12512 -c{number_of_channels_per_subband} -C{number_of_channels_per_subband - 1} -b16 -s{subbands} -m15 -D {start_time} -r{runtime} -g0 -q1 -R0 -B0 -f{sample_rate} -i {input_files} -o {output}"
+    return f"TZ=UTC ISBI/ISBI -M {channel_mapping} -K {output_path}{scan['scan']}/delays.bin -p1 -n2 -t12512 -c{number_of_channels_per_subband} -C{number_of_channels_per_subband - 1} -b16 -s{subbands} -m15 -D '{start_time}' -r{runtime} -g0 -q1 -R0 -B0 -f{sample_rate} -i {input_files} -o {yes}"

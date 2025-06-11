@@ -1,15 +1,15 @@
 {
-  "observation": "G004",
-  "vex-path": "./G004.vex",
-  "output-path": "/var/scratch/mpurvins/",
+  "observation": "JB002",
+  "vex-path": "/mnt/VLBI/correlations/sfxc/JB002/JB002.vex",
+  "output-path": "/mnt/VLBI/radioblocks/",
   "correlation-channels": [1, 2, 3, 4, 5, 6, 7, 8],
   "reference-station": "Ib",
   "number_of_channels_per_subband": 128,
   "scans": [
     {
-      "scan": "No0002",
-      "file-path-ir": "/var/scratch/mpurvins/g004_ir_no0002.m5a",
-      "file-path-ib": "/var/scratch/mpurvins/g004_ib_no0002.m5a",
+      "scan": "No0003",
+      "file-path-ir": "/mnt/VLBI/data/jb002/jb002_ir_no0003.m5a",
+      "file-path-ib": "/mnt/VLBI/data/jb002/jb002_ib_no0003.m5a",
       "runtime": 180
     }
   ]

@@ -47,8 +47,7 @@ class VexReader:
 
         for i in range(len(threads)):
             thread = threads[i]
-            thread_idx = int(thread[-1])
-            mapped_idx[thread_idx] = i
+            mapped_idx[i] = int(thread[-1])
 
         return " ".join(str(x) for x in mapped_idx)
 
