@@ -1,3 +1,8 @@
-*.vex
-__pycache__
-.idea
+__pycache__/
+**/__pycache__/
+
+.idea/
+
+*.pyc
+*.pyo
+*.pyd

@@ -2,8 +2,8 @@ import os
 import time
 import re
 
-from vex import Vex
-from dbbc_patching import patching
+from utils.vex import Vex
+from utils.dbbc_patching import patching
 
 os.environ['TZ'] = 'UTC'
 time.tzset()
