@@ -1,16 +1,26 @@
 {
-  "observation": "JB002",
-  "vex-path": "/mnt/VLBI/correlations/sfxc/JB002/JB002.vex",
-  "output-path": "/mnt/VLBI/radioblocks/",
-  "correlation-channels": [1, 2, 3, 4, 5, 6, 7, 8],
-  "reference-station": "Ib",
-  "number_of_channels_per_subband": 128,
-  "scans": [
-    {
-      "scan": "No0003",
-      "file-path-ir": "/mnt/VLBI/data/jb002/jb002_ir_no0003.m5a",
-      "file-path-ib": "/mnt/VLBI/data/jb002/jb002_ib_no0003.m5a",
-      "runtime": 180
-    }
-  ]
+    "observation": "G004",
+    "vex_path": "/home/matyss/Desktop/isbi_aartfaac_pipeline/data/G004.vex",
+    "output_path": "/home/matyss/Desktop/tests/G004",
+    "subbands": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+    ],
+    "reference_station": "Ib",
+    "nr_channels_per_subband": 128,
+    "scans": [
+        {
+            "scan_nr": "No0002",
+            "file_ir": "",
+            "file_ib": "",
+            "runtime": 180,
+            "raw_result_path": "/home/matyss/Desktop/tests/G004/No0002/corr_files/"
+        }
+    ]
 }
