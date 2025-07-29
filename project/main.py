@@ -11,6 +11,7 @@ sys.path.append(str(root_dir))
 from project.generate_run_cmds import generate_run_cmds
 from project.generate_plots import generate_plots
 from project.process_data import process_data
+from project.generate_delay_file import generate_delay_file
 from config import config
 
 if __name__ == '__main__':

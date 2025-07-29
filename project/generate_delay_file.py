@@ -5,12 +5,12 @@ from astropy import coordinates as ac
 from astropy import units as un
 from astropy.time import Time
 
-from VexReader import VexReader
+from utils.VexReader import VexReader
 from datetime import datetime, timedelta
 
 
 def generate_delay_file(scan, ctrl):
-    vex = VexReader(ctrl["vex-path"])
+    vex = VexReader(ctrl["vex_path"])
 
     irbene = vex.site_geocentric_position("IRBENE")
     irbene16 = vex.site_geocentric_position("IRBENE16")
@@ -18,7 +18,7 @@ def generate_delay_file(scan, ctrl):
     irbene_loc = ac.EarthLocation.from_geocentric(irbene[0] * un.m, irbene[1] * un.m, irbene[2] * un.m)
     irbene16_loc = ac.EarthLocation.from_geocentric(irbene16[0] * un.m, irbene16[1] * un.m, irbene16[2] * un.m)
 
-    if ctrl["reference-station"] == "Ib":
+    if ctrl["reference_station"] == "Ib":
         site_locs = [irbene_loc, irbene16_loc]
         site_names = ["IRBENE", "IRBENE16"]
     else:
@@ -74,19 +74,22 @@ def generate_delay_file(scan, ctrl):
         true_delays[0].append(0)
         frac_delays[0].append(0)
 
+    print(true_delays)
+    print(frac_delays)
     center_frequencies = vex.center_frequencies()
+    print(center_frequencies)
 
     num_rows = len(true_delays)
     num_cols = len(true_delays[0])
 
-    with open(f"{ctrl['output-path']}{ctrl['observation']}/{scan}/delays.bin", "wb") as file:
-        file.write(struct.pack("II", num_rows, num_cols))
+    # with open(f"{ctrl['output-path']}{ctrl['observation']}/{scan}/delays.bin", "wb") as file:
+    #     file.write(struct.pack("II", num_rows, num_cols))
 
-        for row in true_delays:
-            file.write(struct.pack("i" * num_cols, *row))
+    #     for row in true_delays:
+    #         file.write(struct.pack("i" * num_cols, *row))
 
-        for row in frac_delays:
-            file.write(struct.pack("d" * num_cols, *row))  # Use 'd' for double precision
+    #     for row in frac_delays:
+    #         file.write(struct.pack("d" * num_cols, *row))
 
-        file.write(struct.pack("i", len(center_frequencies)))
-        file.write(struct.pack("d" * len(center_frequencies), *center_frequencies))
+    #     file.write(struct.pack("i", len(center_frequencies)))
+    #     file.write(struct.pack("d" * len(center_frequencies), *center_frequencies))

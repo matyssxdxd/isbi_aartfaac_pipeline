@@ -1,7 +1,7 @@
 {
     "observation": "G004",
-    "vex_path": "/home/matyss/Desktop/isbi_aartfaac_pipeline/data/G004.vex",
-    "output_path": "/home/matyss/Desktop/tests/G004",
+    "vex_path": "/home/matyss/JOB/RADIOBLOCKS/isbi_aartfaac_pipeline/data/G004.vex",
+    "output_path": "/home/matyss/JOB/RADIOBLOCKS/RANDOM/G004",
     "subbands": [
         1,
         2,
@@ -20,7 +20,7 @@
             "file_ir": "",
             "file_ib": "",
             "runtime": 180,
-            "raw_result_path": "/home/matyss/Desktop/tests/G004/No0002/corr_files/"
+            "raw_result_path": "/home/matyss/JOB/RADIOBLOCKS/RANDOM/G004/No0002/corr_files/"
         }
     ]
 }
